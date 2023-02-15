@@ -11,7 +11,9 @@ class RankPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var animeController = Get.put(AnimeController());
     return Obx(() => animeController.isRankLoading.value
-        ? Center(
+        ?
+        /* loading */
+        Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
@@ -24,8 +26,9 @@ class RankPage extends StatelessWidget {
               ],
             ),
           )
-        : Column(
-            // crossAxisAlignment: CrossAxisAlignment.center,
+        :
+        /* anime list by rank */
+        Column(
             children: [
               Expanded(
                 child: ListView.builder(
@@ -34,7 +37,9 @@ class RankPage extends StatelessWidget {
                     itemCount: animeController.rankListCount.value,
                     itemBuilder: ((context, index) {
                       return index == animeController.rankListCount.value - 1
-                          ? TextButton(
+                          ?
+                          /* btn for adding 10 to length */
+                          TextButton(
                               onPressed: () {
                                 animeController.rankListCount.value += 10;
                               },

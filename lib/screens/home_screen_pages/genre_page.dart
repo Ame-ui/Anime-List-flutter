@@ -13,7 +13,9 @@ class GenrePage extends StatelessWidget {
     var genreController = Get.put(GenreController());
     var animeController = Get.put(AnimeController());
     return Obx(() => genreController.isGenreLoading.value || animeController.isHomeLoading.value
-        ? Center(
+        ?
+        /* loading */
+        Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
@@ -53,6 +55,7 @@ class GenrePage extends StatelessWidget {
                       }
                     }
                   })),
+              /* list of anime by selected genre */
               Expanded(
                 child: ListView.builder(
                     padding: const EdgeInsets.all(10),

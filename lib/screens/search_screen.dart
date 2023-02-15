@@ -31,7 +31,9 @@ class _SearchScreenState extends State<SearchScreen> {
       child: SafeArea(
         child: Scaffold(
           appBar: searchAppbar(animeController),
-          body: ValueListenableBuilder(
+          body:
+              /* searched anime list */
+              ValueListenableBuilder(
             valueListenable: searchList,
             builder: (BuildContext context, dynamic value, Widget? child) {
               return ListView.builder(
@@ -51,9 +53,9 @@ class _SearchScreenState extends State<SearchScreen> {
 
   AppBar searchAppbar(AnimeController animeController) {
     return AppBar(
+      /* search text field */
       title: TextField(
         onChanged: (value) {
-          // debugPrint(value);
           searchList.value = List.from(searchList.value..clear());
           if (value != '') {
             for (var element in animeController.allAnimeList) {
@@ -70,12 +72,14 @@ class _SearchScreenState extends State<SearchScreen> {
         decoration: InputDecoration(
             hintText: 'Search',
             border: InputBorder.none,
-            suffixIcon: IconButton(
-                onPressed: () {
-                  _textEditingController.text = '';
-                  searchList.value = List.from(searchList.value..clear());
-                },
-                icon: const Icon(Icons.close))),
+            suffixIcon:
+                /* to clear text field */
+                IconButton(
+                    onPressed: () {
+                      _textEditingController.text = '';
+                      searchList.value = List.from(searchList.value..clear());
+                    },
+                    icon: const Icon(Icons.close))),
       ),
     );
   }
